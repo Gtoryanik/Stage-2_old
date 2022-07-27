@@ -1,7 +1,7 @@
 let webdriver = require('selenium-webdriver');
 let driver = new webdriver.Builder().forBrowser('chrome').build();
 const {By, Key, until } = require('selenium-webdriver');
-const { expect } = require('chai')
+const { expect } = require('chai');
 driver.manage().setTimeouts({ implicit: 100000 });
 
 describe('google cloud test', () => {
@@ -49,9 +49,9 @@ describe('google cloud test', () => {
         await localSSDList.click();
         const localSSDNeeded = await driver.findElement(By.xpath('//*[@id="select_option_440"]/div'));
         await localSSDNeeded.click();
-        const locationList = await driver.findElement(By.xpath('//*[@id="select_value_label_84"]/span[1]/div'));
+        const locationList = await driver.findElement(By.xpath('//*[@id="select_value_label_84"]'));
         await locationList.click();
-        const locationNeeded = await driver.findElement(By.xpath('//*[@id="select_option_222"]/div'));
+        const locationNeeded = await driver.findElement(By.xpath('//*[@id="select_option_222"]'));
         await locationNeeded.click();
         const commitedUsageList = await driver.findElement(By.xpath('//*[@id="select_value_label_85"]'));
         await commitedUsageList.click();
@@ -61,23 +61,17 @@ describe('google cloud test', () => {
         const addToEstimateButton = await driver.findElement(By.xpath('//*[@id="mainForm"]/div[2]/div/md-card/md-card-content/div/div[1]/form/div[20]/button'));
         await addToEstimateButton.click();
 
-        const extimateCheck = await driver.findElement(By.xpath('//*[@id="compute"]/md-list[1]/div/div[1]/div/span/span')).getText();
-        await expect(extimateCheck).to.include('4 x');
-        const regionCheck = await driver.findElement(By.xpath('//*[@id="compute"]/md-list[1]/md-list-item[1]/div')).getText();
-        await expect(regionCheck).to.include('Frankfurt');
-        const totalCheck = await driver.findElement(By.xpath('//*[@id="compute"]/md-list[1]/md-list-item[2]/div')).getText();
-        await expect(totalCheck).to.include('2,920 total hours per month');
-        const commitedUsageCheck = await driver.findElement(By.xpath('//*[@id="compute"]/md-list/md-list-item[3]/div')).getText();
-        await expect(commitedUsageCheck).to.include('1 Year');
         const inctansesTypeCheck = await driver.findElement(By.xpath('//*[@id="compute"]/md-list/md-list-item[5]/div[1]')).getText();
         await expect(inctansesTypeCheck).to.include('n1-standard-8')
-        const operatingSystemCheck = await driver.findElement(By.xpath('//*[@id="compute"]/md-list[1]/md-list-item[6]/div')).getText();
-        await expect(operatingSystemCheck).to.include('Software: Free');
-        const GPUCheck = await driver.findElement(By.xpath('//*[@id="compute"]/md-list[2]/md-list-item[7]/div[1]')).getText();
-        await expect(GPUCheck).to.include('1 NVIDIA TESLA P100');
-        const localSSDCheck = await driver.findElement(By.xpath('//*[@id="compute"]/md-list[2]/md-list-item[8]/div[1]')).getText();
-        await expect(localSSDCheck).to.include('2x375 GiB');
-        const costPerMonth = await driver.findElement(By.xpath('//*[@id="compute"]/md-list[2]/md-list-item[9]/div/b')).getText();
+        const VMClassCheck = await driver.findElement(By.xpath('//*[@id="compute"]/md-list[1]/md-list-item[4]/div')).getText();
+        await expect(VMClassCheck).to.include('Regular');
+        const commitmentTermCheck = await driver.findElement(By.xpath('//*[@id="compute"]/md-list[1]/md-list-item[3]/div')).getText();
+        await expect(commitmentTermCheck).to.include('1 Year');
+        const regionCheck = await driver.findElement(By.xpath('//*[@id="compute"]/md-list[1]/md-list-item[1]/div')).getText();
+        await expect(regionCheck).to.include('Frankfurt');
+        const localSSDCheck = await driver.findElement(By.xpath('//*[@id="compute"]/md-list[1]/md-list-item[8]/div[1]')).getText();
+        await expect(localSSDCheck).to.include('2x375');
+        const costPerMonth = await driver.findElement(By.xpath('//*[@id="resultBlock"]/md-card/md-card-content/div/div/div/h2/b')).getText();
         await expect(costPerMonth).to.include('4,024.56');
 
     });
