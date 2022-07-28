@@ -24,5 +24,5 @@ describe ('I can win', ()=>{
         await expect(pasteNameResult).toHaveTextContaining('helloweb');
         await expect(pasteResult).toHaveTextContaining('Hello from WebDriver');
         await expect(pasteExpirationResult).toHaveTextContaining('10 MIN');
-        })Ж
+        });
 })
